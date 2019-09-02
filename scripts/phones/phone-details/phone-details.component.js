@@ -1,13 +1,13 @@
 import {BaseComponent} from "../../shared/componets/base.component.js";
-
+//PhoneDetailsComponent наследует от BaseComponent
 export class PhoneDetailsComponent extends BaseComponent{
-
+//отображает телефон 
     show(phone) {
         this._phone = phone;
         this._render();
         super.show();
     }
-
+//Шаблон подробностей телефона
     _render() {
         this._element.innerHTML = `
           <div>
