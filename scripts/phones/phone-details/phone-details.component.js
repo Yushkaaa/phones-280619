@@ -65,3 +65,9 @@ smallImg.onclick = function(e){
     largeImg.src = src;
   } 
 }
+
+let button = document.querySelector('.back')
+button.onclick = function(){
+  window.location.href = 'catalogue.html'
+}
+
