@@ -82,9 +82,9 @@ export class PhoneDetailsComponent extends BaseComponent{
 //   }
 //   function showSmall(src) {
 //     largeImg.src = src;
-  } 
-}
-// //кнопка назад
+//   } 
+// }
+// // //кнопка назад
 // let button = document.querySelector('.back')
 // button.onclick = function(){
 //   window.location.href = 'catalogue.html'
