@@ -1,6 +1,19 @@
 import {BaseComponent} from "../../shared/componets/base.component.js";
 //PhoneDetailsComponent наследует от BaseComponent
 export class PhoneDetailsComponent extends BaseComponent{
+
+  constructor({element, onBack}){
+    super({element});//кнопка назад, разобрать. Cложно,  очень сильно намудрено О_О
+    this._onBack = onBack;
+    this._element.addEventListener('click', (e)  =>{
+      const backButton = e.target.closest('.back')
+      if(backButton){
+        this._onBack();
+      }
+
+    })
+  }
+
 //отображает телефон 
     show(phone) {
         this._phone = phone;
@@ -14,7 +27,7 @@ export class PhoneDetailsComponent extends BaseComponent{
 
     <img class="phone" src="img/phones/motorola-xoom-with-wi-fi.0.jpg">
 
-    <button>Back</button>
+    <button class ="back">Back</button>
     <button>Add to basket</button>
 
 
@@ -65,9 +78,9 @@ smallImg.onclick = function(e){
     largeImg.src = src;
   } 
 }
-
-let button = document.querySelector('.back')
-button.onclick = function(){
-  window.location.href = 'catalogue.html'
-}
+// //кнопка назад
+// let button = document.querySelector('.back')
+// button.onclick = function(){
+//   window.location.href = 'catalogue.html'
+// }
 

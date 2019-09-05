@@ -5,6 +5,13 @@ export class PhonesComponent {
     constructor({element}) {
         this._element = element;
         this._render();
+        this._initCatalog();
+        this._initCart();
+        this.initDetails();
+        
+    }
+
+    _initCatalog(){
         this._catalog = new PhonesCatalogComponent({
             element: this._element.querySelector('.phones-catalog'),
             phones: PhonesService.getAll(),
@@ -14,9 +21,21 @@ export class PhonesComponent {
                 this._details.show(phonesDetails);
             }
         });
+
+    }
+    initDetails(){
         this._details = new PhoneDetailsComponent({
-            element: this._element.querySelector('.phone-details')
+            element: this._element.querySelector('.phone-details'),
+            //метод Back
+            onBack : () =>{
+                console.log(this)
+
+            }
         });
+
+    }
+    _initCart(){
+
     }
 
     _render() {
