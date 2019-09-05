@@ -1,6 +1,9 @@
 import {PhonesCatalogComponent} from './phones-catalog/phones-catalog.component.js'
 import {PhoneDetailsComponent} from './phone-details/phone-details.component.js'
 import {PhonesService} from './phones.service.js'
+
+
+
 export class PhonesComponent {
     constructor({element}) {
         this._element = element;
@@ -23,13 +26,18 @@ export class PhonesComponent {
         });
 
     }
-    initDetails(){
+    _initDetails(){
         this._details = new PhoneDetailsComponent({
             element: this._element.querySelector('.phone-details'),
             //метод Back
             onBack : () =>{
                 console.log(this)
+                this._catalog.show();
+                this._details.hide();
 
+            },
+            onAdd:(phoneId)=>{
+                console.log(phoneId)
             }
         });
 

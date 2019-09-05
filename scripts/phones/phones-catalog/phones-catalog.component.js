@@ -1,4 +1,8 @@
 import {BaseComponent} from "../../shared/componets/base.component.js";
+import {PhonesService} from"../phones.service.js";
+
+export const phones = PhonesService.getAll();
+
 //PhonesCatalogComponent наследует от BaseComponent
 export class PhonesCatalogComponent  extends BaseComponent {
     constructor({element, phones, onPhoneSelect}) {
