@@ -1,18 +1,15 @@
 import {PhonesCatalogComponent} from './phones-catalog/phones-catalog.component.js'
 import {PhoneDetailsComponent} from './phone-details/phone-details.component.js'
+import {CartComponent} from './cart/cart.component.js';
 import {PhonesService} from './phones.service.js'
-import { CartComponent } from './cart/cart.component.js';
-
-
 
 export class PhonesComponent {
     constructor({element}) {
         this._element = element;
         this._render();
         this._initCatalog();
+        this._initDetails();
         this._initCart();
-        this.initDetails();
-        
     }
 
     _initCatalog(){
@@ -49,7 +46,6 @@ export class PhonesComponent {
         this._cart = new CartComponent({
             element: this._element.querySelector('.cart')
         })
-
     }
 
     _render() {

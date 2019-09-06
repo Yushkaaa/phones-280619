@@ -229,6 +229,6 @@ export const PhonesService = new class {
     }
 
     getOneById(id) {
-        return {mockPhone};
+        return mockPhone;
     }
 };

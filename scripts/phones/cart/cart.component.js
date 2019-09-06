@@ -1,5 +1,4 @@
 import {BaseComponent} from "../../shared/componets/base.component.js";
-import { PhoneDetailsComponent } from "../phone-details/phone-details.component.js";
 
 export class CartComponent extends BaseComponent{
 
@@ -18,7 +17,7 @@ export class CartComponent extends BaseComponent{
             if(this._phones[phoneId] === 0){
                 delete this._phones[phoneId]
             }
-            this._render()
+            this._render( )
         })
     }
 
@@ -37,12 +36,9 @@ export class CartComponent extends BaseComponent{
         this._element.innerHTML = `
         <p>Shopping Cart</p>
         <ul>
-        //вернет ключ значения в массиве
         ${Object.entries(this._phones).map(([phoneId,count]) => {
             return `<li>${phoneId} - ${count}</li>
             <button class="remove" data-phone-id=${phoneId}>x</button>
-            
-            
             `
         }).join('')}  
         </ul>

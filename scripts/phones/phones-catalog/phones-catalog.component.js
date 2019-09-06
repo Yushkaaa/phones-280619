@@ -39,7 +39,7 @@ export class PhonesCatalogComponent  extends BaseComponent {
                     </div>
 
                     <a href="#!/phones/${phone.id}">${phone.name}</a>
-                    // snippet - берем из файла json
+                   
                     <p>${phone.snippet}</p>
                 </li>`).join('')}   
             </ul>

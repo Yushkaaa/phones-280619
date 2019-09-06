@@ -47,12 +47,8 @@ export class PhoneDetailsComponent extends BaseComponent{
 
     <button class= "back">Back</button>
     <button class= "add">Add to basket</button>
-
-      //засчет деструктивного присваивания мы можем убрать имя/описание/картинки
     <h1>${name}</h1>
-    //описание из файла
     <p>${description}</p>
-
     <ul class="phone-thumbs">
     
     ${images.map((src) => `

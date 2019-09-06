@@ -11,4 +11,6 @@ export class BaseComponent {
     hide(){
         this._element.hidden = true;
     }
+//добавть методы on, onEvent, emitEvent
+    
 }
