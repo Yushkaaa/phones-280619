@@ -8,6 +8,18 @@ export class CartComponent extends BaseComponent{
         //будут храниться данные - имя телефона(id), его кол-во. для этого подойдет объект
         this._phones = {};
         this._render();
+        this._element.addEventListener('click', (e)=>{
+            const button = e.target.closest('.remove')
+            if(!button){
+                return;
+            }
+            const {phoneId} = button.dataset;
+            this._phones[phoneId] -= 1;
+            if(this._phones[phoneId] === 0){
+                delete this._phones[phoneId]
+            }
+            this._render()
+        })
     }
 
     add(phoneId){
@@ -27,7 +39,11 @@ export class CartComponent extends BaseComponent{
         <ul>
         //вернет ключ значения в массиве
         ${Object.entries(this._phones).map(([phoneId,count]) => {
-            return `<li>${phoneId} - ${count}</li>`
+            return `<li>${phoneId} - ${count}</li>
+            <button class="remove" data-phone-id=${phoneId}>x</button>
+            
+            
+            `
         }).join('')}  
         </ul>
         `
