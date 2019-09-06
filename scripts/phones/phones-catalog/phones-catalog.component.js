@@ -25,7 +25,7 @@ export class PhonesCatalogComponent  extends BaseComponent {
     _render() {
         this._element.innerHTML = `
                     <ul class="phones">
-                    //не совсем поняла конструкцию с map
+                    
                  ${this._phones.map((phone) => `
                <li class="thumbnail phone" data-phone-id=${phone.id}>
                     <a href="#!/phones/${phone.id}" class="thumb">

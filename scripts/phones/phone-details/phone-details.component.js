@@ -39,9 +39,9 @@ export class PhoneDetailsComponent extends BaseComponent{
     }
 //Шаблон подробностей телефона
     _render() {
-      const{name, description, images} = this._phone
-        this._element.innerHTML = `
-          <div>
+      const{name, description, images} = this._phone;
+      this._element.innerHTML = `
+      <div>
 
     <img class="phone">
 

@@ -20,6 +20,7 @@ export class PhonesComponent {
             element: this._element.querySelector('.phones-catalog'),
             phones: PhonesService.getAll(),
             onPhoneSelect: (phoneId) => {
+                this._phoneId = phoneId;
                 const phonesDetails = PhonesService.getOneById(phoneId);
                 this._catalog.hide();
                 this._details.show(phonesDetails);
@@ -37,8 +38,8 @@ export class PhonesComponent {
                 this._details.hide();
 
             },
-            onAdd:(phoneId)=>{
-                console.log(phoneId)
+            onAdd: (phoneId)=>{
+                this._cart.add(this._phoneId);
             }
         });
 
