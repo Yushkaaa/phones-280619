@@ -223,6 +223,10 @@ const mockPhone = {
 }
 
 export const PhonesService = new class {
+    constructor() {
+        console.log(1);
+    }
+
     getAll() {
         // http
         return mockPhones;

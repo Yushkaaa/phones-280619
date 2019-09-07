@@ -2,32 +2,19 @@ import {BaseComponent} from "../../shared/componets/base.component.js";
 //PhoneDetailsComponent наследует от BaseComponent
 export class PhoneDetailsComponent extends BaseComponent{
 
-  constructor({element, onBack, onAdd}){
-    super({element});//кнопка назад, разобрать. Cложно,  очень сильно намудрено О_О
-    this._onBack = onBack;
-    this._onAdd = onAdd;
-    this._element.addEventListener('click', (e)  =>{
-      const backButton = e.target.closest('.back')
-      const addButton = e.target.closest('.add')//добавление в корзину
-      const img = e.target.closest('.thumb')
-      //если попали в условие функции, например img = true, если нет то кнопка назад и тд
-      //тк меняется только scr картинки, вся страница не перезакгружается
-      if(img){
-        this._currentImg.src = img.src;
-        return;
-      }
-     
-      if(backButton){
-        this._onBack();
-        return
-      }
-      if(addButton){
-        this._onAdd(this._phone.id)
-      }
+  constructor({element}) {
+    super({element});
+    this.on('click', '.thumb', (e) => {
+        this._currentImg.src = e.delegateTarget.src;
+    });
+    this.on('click', '.add', (e) => {
+        this.emitEvent('add-to-cart', this._phone.id)
+    });
+    this.on('click', '.back', (e) => {
+        this.emitEvent('back')
+    });
+}
 
-
-    })
-  }
 
 //отображает телефон 
     show(phoneDetails) {

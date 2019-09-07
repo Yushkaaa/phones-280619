@@ -15,30 +15,33 @@ export class PhonesComponent {
     _initCatalog(){
         this._catalog = new PhonesCatalogComponent({
             element: this._element.querySelector('.phones-catalog'),
-            phones: PhonesService.getAll(),
-            onPhoneSelect: (phoneId) => {
-                this._phoneId = phoneId;
-                const phonesDetails = PhonesService.getOneById(phoneId);
-                this._catalog.hide();
-                this._details.show(phonesDetails);
-            }
+            phones: PhonesService.getAll()
         });
-
+        this._catalog.onEvent('phone-select', ({detail: phoneId}) => {
+            this._phoneId = phoneId;
+            const phonesDetails = PhonesService.getOneById(phoneId);
+            this._catalog.hide();
+            this._details.show(phonesDetails);
+        });
+        this._catalog.onEvent('add-to-cart', ({detail: phoneId}) => {
+            this._cart.add(phoneId);
+        });
     }
+    
     _initDetails(){
         this._details = new PhoneDetailsComponent({
-            element: this._element.querySelector('.phone-details'),
-            //метод Back
-            onBack : () =>{
-                console.log(this)
+            element: this._element.querySelector('.phone-details')
+        })
+            //назад
+            this._details.onEvent('back',()=>{
                 this._catalog.show();
                 this._details.hide();
-
-            },
-            onAdd: (phoneId)=>{
+            })
+            //корзина
+            this._details.onEvent('add-to-cart',({detail: phoneId})=>{
+                console.log(this)
                 this._cart.add(this._phoneId);
-            }
-        });
+            })
 
     }
     //корзина

@@ -17,18 +17,16 @@ export class CartComponent extends BaseComponent{
             if(this._phones[phoneId] === 0){
                 delete this._phones[phoneId]
             }
-            this._render( )
+            this._render();
         })
     }
 
     add(phoneId){
         // если такого ключа нет, то запиши мне его
-        if(!this._phones[phoneId]){
-            this._phones[phoneId] = 1;
-            this._render();
-            return;
+        if (!this._phones[phoneId]) {
+            this._phones[phoneId] = 0;
         }
-        this._phones[phoneId] +=1;
+        this._phones[phoneId] += 1;
         this._render();
     }
 
