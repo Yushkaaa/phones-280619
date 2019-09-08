@@ -72,7 +72,7 @@ export class PhonesComponent {
                 </p>
             </section>
 
-            <section class = "cart>
+            <section class = "cart">
              
             </section>
         </div>
