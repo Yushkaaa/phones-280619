@@ -1,7 +1,8 @@
-import {PhonesCatalogComponent} from './phones-catalog/phones-catalog.component.js'
-import {PhoneDetailsComponent} from './phone-details/phone-details.component.js'
+import {PhonesCatalogComponent} from './phones-catalog/phones-catalog.component.js';
+import {PhoneDetailsComponent} from './phone-details/phone-details.component.js';
 import {CartComponent} from './cart/cart.component.js';
-import {PhonesService} from './phones.service.js'
+import {PhonesService} from './phones.service.js';
+import {FilterComponent} from'./filter/filter.component.js';
 
 export class PhonesComponent {
     constructor({element}) {
@@ -10,6 +11,7 @@ export class PhonesComponent {
         this._initCatalog();
         this._initDetails();
         this._initCart();
+        this._initFilter();
     }
 
     _initCatalog(){
@@ -51,25 +53,20 @@ export class PhonesComponent {
         })
     }
 
+    _initFilter(){
+        this._filter = new FilterComponent({
+            element: this._element.querySelector('.phones-filter')
+        })
+    }
+
     _render() {
         this._element.innerHTML = `
             <div class="row">
 
         <!--Sidebar-->
         <div class="col-md-2">
-            <section>
-                <p>
-                    Search:
-                    <input>
-                </p>
-
-                <p>
-                    Sort by:
-                    <select>
-                        <option value="name">Alphabetical</option>
-                        <option value="age">Newest</option>
-                    </select>
-                </p>
+            <section class="phones-filter">
+                
             </section>
 
             <section class = "cart">
