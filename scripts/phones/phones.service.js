@@ -227,12 +227,36 @@ export const PhonesService = new class {
         console.log(1);
     }
 
-    getAll() {
-        // http
-        return mockPhones;
+    getAll({text, orderBy}={}) {
+        const searchedPhones = this._filter(mockPhones, text);
+        return this._sort(searchedPhones, orderBy)
     }
 
     getOneById(id) {
         return mockPhone;
+    }
+
+    _filter(phones,text){
+        if(!text){
+            return [...phones]
+        }
+        return [...phones].filter((phone)=>phone.name.toLowerCase().includes(text.toLowerCase()))
+    }
+    _sort(phones,orderBy){
+        const p = [...phones]
+        if(!orderBy){
+            return p
+        }
+        p.sort((p1, p2) => {
+            if (p1[orderBy] > p2[orderBy]) {
+                return 1;
+            }
+            if (p1[orderBy] < p2[orderBy]) {
+                return -1
+            }
+            return 0;
+        })
+
+        return p;
     }
 };

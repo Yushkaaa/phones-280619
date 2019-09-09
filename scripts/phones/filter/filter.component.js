@@ -5,6 +5,13 @@ export class FilterComponent extends BaseComponent{
     constructor ({element}){
         super({element});
         this._render();
+        this.on('input','.search', ({delegateTarget: {value}})=>{
+            // console.log(e.delegateTarget.value);
+            this.emitEvent('search', value)
+        })
+        this.on('change', '.sort', ({delegateTarget: {value}}) => {
+            this.emitEvent('change-order', value)
+        });
        
     }
 
@@ -12,7 +19,7 @@ export class FilterComponent extends BaseComponent{
         this._element.innerHTML = `
                 <p>
                     Search:
-                    <input>
+                    <input  class="search">
                 </p>
 
                 <p>

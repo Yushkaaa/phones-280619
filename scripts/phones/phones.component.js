@@ -12,13 +12,16 @@ export class PhonesComponent {
         this._initDetails();
         this._initCart();
         this._initFilter();
+        this._showFilteredPhones();
     }
 
     _initCatalog(){
         this._catalog = new PhonesCatalogComponent({
             element: this._element.querySelector('.phones-catalog'),
-            phones: PhonesService.getAll()
+            // phones: PhonesService.getAll()
         });
+        this._showFilteredPhones();
+
         this._catalog.onEvent('phone-select', ({detail: phoneId}) => {
             this._phoneId = phoneId;
             const phonesDetails = PhonesService.getOneById(phoneId);
@@ -36,12 +39,12 @@ export class PhonesComponent {
         })
             //назад
             this._details.onEvent('back',()=>{
-                this._catalog.show();
+                this._showFilteredPhones();
                 this._details.hide();
             })
             //корзина
             this._details.onEvent('add-to-cart',({detail: phoneId})=>{
-                console.log(this)
+                //console.log(this)
                 this._cart.add(this._phoneId);
             })
 
@@ -56,7 +59,23 @@ export class PhonesComponent {
     _initFilter(){
         this._filter = new FilterComponent({
             element: this._element.querySelector('.phones-filter')
-        })
+
+        });
+
+        this._filter.onEvent('search', ({detail: text}) => {
+            //console.log(text);
+            this.text = text;
+            this._showFilteredPhones();
+        });
+        this._filter.onEvent('change-order', ({detail: orderBy}) => {
+            //console.log(orderBy)
+            this.orderBy = orderBy;
+            this._showFilteredPhones();
+        });
+    }
+    _showFilteredPhones(){
+        const phones = PhonesService.getAll({text: this.text, orderBy: this.orderBy})
+        this._catalog.show(phones);
     }
 
     _render() {
