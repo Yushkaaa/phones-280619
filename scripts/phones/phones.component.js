@@ -12,7 +12,6 @@ export class PhonesComponent {
         this._initDetails();
         this._initCart();
         this._initFilter();
-        this._showFilteredPhones();
     }
 
     _initCatalog(){
@@ -22,11 +21,17 @@ export class PhonesComponent {
         });
         this._showFilteredPhones();
 
-        this._catalog.onEvent('phone-select', ({detail: phoneId}) => {
-            this._phoneId = phoneId;
-            const phonesDetails = PhonesService.getOneById(phoneId);
-            this._catalog.hide();
-            this._details.show(phonesDetails);
+        this._catalog.onEvent('phone-select', async ({detail: phoneId}) => {
+            try {
+                this._phoneId = phoneId;
+                const details = await PhonesService.getOneById(phoneId)
+                this._catalog.hide();
+                this._details.show(details);
+            } catch (err) {
+                console.log(err)
+            }
+
+
         });
         this._catalog.onEvent('add-to-cart', ({detail: phoneId}) => {
             this._cart.add(phoneId);
@@ -36,7 +41,7 @@ export class PhonesComponent {
     _initDetails(){
         this._details = new PhoneDetailsComponent({
             element: this._element.querySelector('.phone-details')
-        })
+        });
             //назад
             this._details.onEvent('back',()=>{
                 this._showFilteredPhones();
@@ -73,10 +78,10 @@ export class PhonesComponent {
             this._showFilteredPhones();
         });
     }
-    _showFilteredPhones(){
-        const phones = PhonesService.getAll({text: this.text, orderBy: this.orderBy})
-        this._catalog.show(phones);
-    }
+    async _showFilteredPhones() {
+        const phones = await PhonesService.getAll({text: this.text, orderBy: this.orderBy})
+        this._catalog.show(phones)
+    } 
 
     _render() {
         this._element.innerHTML = `

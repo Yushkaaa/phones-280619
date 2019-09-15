@@ -1,0 +1,28 @@
+{
+  "name": "phones-280619",
+  "version": "1.0.0",
+  "description": "Static pages of phone catalogue",
+  "main": "example.js",
+  "dependencies": {
+    "http-server": "^0.11.1",
+    "node-static": "^0.7.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yushkaaa/phones-280619.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yushkaaa/phones-280619/issues"
+  },
+  "homepage": "https://github.com/Yushkaaa/phones-280619#readme",
+  "dependencies": {
+  "node-static": "^0.7.11"
+  }
+}
