@@ -4,12 +4,17 @@
   "description": "Static pages of phone catalogue",
   "main": "example.js",
   "dependencies": {
-    "http-server": "^0.11.1",
     "node-static": "^0.7.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.4",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack" 
   },
   "repository": {
     "type": "git",
@@ -21,8 +26,5 @@
   "bugs": {
     "url": "https://github.com/Yushkaaa/phones-280619/issues"
   },
-  "homepage": "https://github.com/Yushkaaa/phones-280619#readme",
-  "dependencies": {
-  "node-static": "^0.7.11"
-  }
+  "homepage": "https://github.com/Yushkaaa/phones-280619#readme"
 }
